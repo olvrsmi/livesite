@@ -84,6 +84,18 @@
 
           }
         }
+        #dmstfctn-iframe-wrapper{
+          display: none; 
+          position: fixed; 
+          top: 0; 
+          left: 0; 
+          transform-origin: top left;
+          transform: translateX(-214px) translateY(-20px) scale(0.33);
+          pointer-events: none;
+        }
+        #dmstfctn-iframe{
+          
+        }
   </style>
 </head>
 <body>
@@ -93,7 +105,7 @@
       <p>is a London based artist, designer and developer, and educator obsessed with the long tail of cybernetics.</p>    
     </div>
     <p>
-      He performs and exhibits globally with <a href="https://dmstfctn.net" style="">dmstfctn</a>, the artist duo he co-founded with Francesco Tacchini in 2017, including at Serpentine, Berghain, HKW, Rhizome, Unsound, CTM and transmediale. <!--They are n-space residents at Somerset House.-->
+      He performs and exhibits globally with <a href="https://dmstfctn.net" style="" id="dmstfctn-link" target="_blank">dmstfctn</a>, the artist duo he co-founded with Francesco Tacchini in 2017, including at Serpentine, Berghain, HKW, Rhizome, Unsound, CTM and transmediale. <!--They are n-space residents at Somerset House.-->
     </p>
     <p>
       He is a digital designer and developer with 15+ years of experience working with clients including artists, designers, fashion brands, universities, and cultural institutions.
@@ -104,6 +116,9 @@
     <br>
     <!-- <a href="mailto:olvrsmi@gmail.com">email</a> -->
     <a target="_blank" href="https://docs.google.com/document/d/1qh86TPA5eQ_NocBfbfFmiGZa6wkGd7BoTDikMQ_7noQ/export?format=pdf">CV</a>    
+    <div id="dmstfctn-iframe-wrapper">
+      <iframe id="dmstfctn-iframe" src="" width="1280" height="1280" frameborder="0"></iframe>
+    </div>
   </article>
   <!--<nav class="question"></nav>-->
   <div class="loaders"></div>
@@ -147,6 +162,28 @@
     document.body.addEventListener('click', function(e){
       document.body.classList.toggle('info-visible')
     });
+
+    const $dmstfctnLink = document.getElementById( 'dmstfctn-link' );
+    const $dmstfctnIframe = document.getElementById( 'dmstfctn-iframe' );
+    const $dmstfctnIframeWrapper = document.getElementById( 'dmstfctn-iframe-wrapper' );
+
+    $dmstfctnLink.addEventListener('mouseover', () => {
+      $dmstfctnIframe.src = 'https://dmstfctn.net';
+      $dmstfctnIframeWrapper.style.display = 'block';
+    });
+    $dmstfctnLink.addEventListener('mouseout', () => {
+      $dmstfctnIframeWrapper.style.display = 'none';
+    });
+
+    document.body.addEventListener('mousemove', function(e){
+      console.log(e)
+      $dmstfctnIframeWrapper.style.top = e.pageY + 'px';
+      $dmstfctnIframeWrapper.style.left = e.pageX + 'px';
+    });
+
+    setTimeout( () => {
+      $dmstfctnIframe.src = 'https://dmstfctn.net';
+    }, 1000 );
   </script>
 </body>
 </html>
