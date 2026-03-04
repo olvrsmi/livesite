@@ -3,65 +3,61 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Oliver Smith</title>
-  <link rel="preconnect" href="https://rsms.me/">
-  <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+  <title>Oliver Smith</title>  
   <style>
     html, body{
       margin: 0;
       padding: 0;
       font-size: 16px;
-      font-family: 'Inter', Arial, Helvetica, sans-serif;      
+      font-family: 'times new roman', 'times', serif;
       background: #FFFFFF;    
       overflow: hidden; 
     }
     .info{
-      margin-left: 3rem;
+      margin-left: 10%;
       box-sizing: border-box;
       height: 100vh;
-      padding: 0.6rem 0.8rem;      
+      padding: 20vh 1.8rem;      
       line-height: 1.2rem;   
       background-color: #ffffff;
-      color: blue; 
+      color: black;
       position: relative;
       z-index: 1;
-      max-width: 32rem;
+      max-width: 42rem;
+      //border-left: 1px solid blue;
     }
+      
+      .info:before{
+        content: '';
+        width: 1px;
+        height: 150vh;
+        background: blue;
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        transform: rotate(-.7deg);
+      }
       .info div{
         
       }
       .info .first-para h1{
         display: inline;
         font-size: 1rem;
-        font-weight: normal;
+        font-weight: bold;
       }
       .info .first-para p{
         display: inline;
       }
       .info a{
-        color: #FF00FF;
+        color: black;
+        text-shadow: 1px 2px rgba( 0, 0, 255, 0.3);
       }
-
-      .loaders{        
-        position: fixed;
-        z-index: 0;
-        top: 0;
-        left: 0;
-        width: 105vw;
-        height: calc(100vh + 5vw);
-      }
-        .loaders span{
-          display: block;
-          float: left;
-          width: 12px;
-          height: 12px;
-          margin: 2px;           
-          background-size: contain;
-          background-repeat: no-repeat;
-          image-rendering: crisp-edges;
-          background-position: center;          
+        .info a:hover{
+          text-shadow: none;
         }
 
+   
       .info-visible .info{
         opacity: 1;
         pointer-events: all;
@@ -71,19 +67,22 @@
           .loaders{
             transform: translateX(-2.5vw) translateY(-2.5vw);
           }
-          html, body{
-             font-size: 24px;
-          }
+           .info{
+             margin-left: 20%;
+           }
+           .info:after{
+              content: '';
+              width: 1px;
+              height: 150vh;
+              background: blue;
+              display: block;
+              position: absolute;
+              right: 0;
+              top: 0;
+              transform: rotate(.9deg);
+            }
         }
-        @media (prefers-reduced-motion) {
-          .loaders{
-            background-color: blue;            
-          }
-          .loaders span{
-            display: none;
-
-          }
-        }
+    
         #dmstfctn-iframe-wrapper{
           display: none; 
           position: fixed; 
@@ -102,7 +101,7 @@
   <article class="info">
     <div class="first-para">
       <h1>Oliver Smith</h1>
-      <p>works with performance, software, sound, and other people to try and understand the long-tail of cybernetics.</p>    
+      <p>works with performance, software, sound, and other people in an attempt to understand the long-tail of cybernetics as it unfurls in the present moment.</p>    
     </div>
     <p>
       He is based in London and performs and exhibits globally with <a href="https://dmstfctn.net" style="" id="dmstfctn-link" target="_blank">dmstfctn</a>, the artist duo he co-founded with Francesco Tacchini in 2017, including at Serpentine, Berghain, HKW, Rhizome, Unsound, CTM and transmediale. dmstfctn are n-space fellows at Somerset House.
@@ -114,76 +113,14 @@
       Oliver has over a decade of experience as an educator at globally leading art and design institutions. He has lectured, written and developed curricula, and managed academic teams, most recently as course leader for MA Interaction Design at the University of the Arts London.
     </p>
     <br>
-    <!-- <a href="mailto:olvrsmi@gmail.com">email</a> -->
-    <a target="_blank" href="https://docs.google.com/document/d/1qh86TPA5eQ_NocBfbfFmiGZa6wkGd7BoTDikMQ_7noQ/export?format=pdf">CV</a>    
+    <a target="_blank" href="https://docs.google.com/document/d/1zuR7phiAtbBiI6NG8G4YjmxuMD9W3FjnDnmz9peW2Yg/preview?tab=t.0">CV</a>    
+    <br>
+    <a href="https://www.instagram.com/olive.__r/">instagram</a>
+    <br>
+    <a href="mailto:olvrsmi@gmail.com">email</a>    
     <div id="dmstfctn-iframe-wrapper">
       <iframe id="dmstfctn-iframe" src="" width="1280" height="1280" frameborder="0"></iframe>
     </div>
   </article>
-  <!--<nav class="question"></nav>-->
-  <div class="loaders"></div>
-  <script>
-    const $loaders = document.querySelector('.loaders');
-    const $info = document.querySelector('.info');
-	  const $linx = [...document.querySelectorAll('a')];
-
-    const possibleLoaders = 30;    
-    let gridCount = 0;
-    const loaderWidth = 14;
-    const run = function(){          
-      const xCount = Math.floor( window.innerWidth / loaderWidth );            
-      const w = Math.ceil(window.innerWidth / xCount);
-      const h = w;
-      const yCount = Math.ceil(window.innerHeight / h) + 1;
-      const total = xCount * yCount;
-      if( total < gridCount ){
-        return;
-      }      
-      const newCount = total - gridCount;
-      console.log(newCount, 'new' );
-      for( let i = 0; i < newCount; i++ ){        
-        const rand = Math.floor( Math.random() * possibleLoaders );
-        const $loader = document.createElement('span');
-        $loader.style.backgroundImage =`url(loader/load-${rand}.gif)`;
-        $loaders.appendChild( $loader );
-      }
-      gridCount = total;
-    }
-    
-    window.addEventListener('resize', run );
-    run();
-
-    $linx.forEach(function($a){
-      $a.addEventListener('click', function(e){
-          e.stopPropagation();
-      })
-    })
-
-    document.body.addEventListener('click', function(e){
-      document.body.classList.toggle('info-visible')
-    });
-
-    const $dmstfctnLink = document.getElementById( 'dmstfctn-link' );
-    const $dmstfctnIframe = document.getElementById( 'dmstfctn-iframe' );
-    const $dmstfctnIframeWrapper = document.getElementById( 'dmstfctn-iframe-wrapper' );
-
-    $dmstfctnLink.addEventListener('mouseover', () => {
-      $dmstfctnIframe.src = 'https://dmstfctn.net';
-      $dmstfctnIframeWrapper.style.display = 'block';
-    });
-    $dmstfctnLink.addEventListener('mouseout', () => {
-      $dmstfctnIframeWrapper.style.display = 'none';
-    });
-
-    document.body.addEventListener('mousemove', function(e){
-      console.log(e)
-      $dmstfctnIframeWrapper.style.top = e.pageY + 'px';
-      $dmstfctnIframeWrapper.style.left = e.pageX + 'px';
-    });
-
-    setTimeout( () => {
-      $dmstfctnIframe.src = 'https://dmstfctn.net';
-    }, 1000 );
-  </script>
 </body>
 </html>
